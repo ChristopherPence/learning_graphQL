@@ -23,9 +23,13 @@ var schema = buildSchema(`
 		deletePet(id: ID): Boolean
 	},
 
+	"""The pet type represents a real life pet. Each gets a unique ID. Names and tags don't have to be unqiue."""
 	type Pet{
+			"""Unique pet identifier"""
 		id: ID!,
+			"""The name of the pet. Doesn't have to be unique"""
 		name: String,
+			"""Tags for the pet. Stored as a list of strings to help group the pet with others"""
 		tags: [String]
 	},
 
@@ -165,4 +169,12 @@ console.log("Online");
 graphql(schema, '{hello}', root).then((response) => {
 	console.log(response);
 });
+*/
+
+/*
+	createOrder(id: ID, item: String): Order,
+	deleteOrder(id: ID): Boolean
+
+	createUser
+	deleteUser
 */

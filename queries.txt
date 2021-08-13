@@ -55,6 +55,11 @@ mutation updatePet {
   }
 }
 
+mutation deletePet {
+  deletePet(id: 7)
+}
+
+
 
 
 
