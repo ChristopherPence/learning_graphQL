@@ -1,19 +1,42 @@
-query getPet($id: ID){
-  pet(id:$id) {
-    id,
-    name,
+query getPet($id: ID) {
+  getPet(id: $id) {
+    id
+    name
     tags
   }
 }
 
-query getStore{
-  store{
-    inventory,
-    orders{
-      id,
+query getPetTag($tag: String) {
+  getPetTag(tag: $tag) {
+    id
+    name
+    tags
+  }
+}
+
+query getOrder($order_id: ID) {
+  getOrder(id: $order_id) {
+    id
+    item
+  }
+}
+
+query getUser($name: String){
+  getUser(name: $name){
+    id
+    name
+    email
+  }
+}
+
+query getStore {
+  getStore {
+    inventory
+    orders {
+      id
       item
     }
-  } 
+  }
 }
 
 
@@ -21,4 +44,9 @@ query getStore{
 
 
 # QUERY VARIABLES
-{"id" : 5}
+{
+  "id": 5,
+  "tag": "crazy",
+  "order_id": 2,
+  "name": "Chris"
+}

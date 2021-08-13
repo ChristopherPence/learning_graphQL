@@ -10,8 +10,11 @@ var {buildSchema} = require('graphql');
 var schema = buildSchema(`
 	type Query{
 		hello: String,
-		pet(id: ID): Pet
-		store: Store
+		getPet(id: ID): Pet
+		getPetTag(tag: String): Pet
+		getOrder(id: ID): Order
+		getUser(name: String): User
+		getStore: Store
 	},
 
 	type Pet{
@@ -28,6 +31,12 @@ var schema = buildSchema(`
 	type Store{
 		inventory: [String],
 		orders: [Order]
+	},
+
+	type User{
+		id: ID!,
+		name: String,
+		email: String
 	}
 `);
 
@@ -54,24 +63,45 @@ class Store{
 	}
 }
 
-
-
+class User{
+	constructor(id, name, email){
+		this.id = id;
+		this.name = name;
+		this.email = email;
+	}
+}
 
 // Build the resolver for the endpoint
 var root = {
-	pet: ({id}) => {
+	getPet: ({id}) => {
 		return new Pet(id);
 	},
 
-	store: () => {
+	getPetTag: ({tag}) => {
+		if(tag == "crazy" || tag == "insane"){
+			return new Pet(4);
+		}
+	},
+
+	getOrder: ({id}) => {
+		new Store().orders.forEach((item) => {
+			if(item.id == id){
+				return item;
+			}
+		});
+	},
+
+	getUser: ({name}) => {
+		return new User(7, name, name + "@jahnelgroup.com");
+	},
+
+	getStore: () => {
 		return new Store();
 	},
 
 	hello: () => {
 		return "Hello World";
 	},
-
-
 };
 
 
