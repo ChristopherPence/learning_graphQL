@@ -19,7 +19,8 @@ var schema = buildSchema(`
 
 	type Mutation{
 		createPet(id: ID, name: String, tags: [String]): Pet,
-		updatePet(id: ID, name: String, tags: [String]): Pet
+		updatePet(id: ID, name: String, tags: [String]): Pet,
+		deletePet(id: ID): Boolean
 	},
 
 	type Pet{
@@ -130,6 +131,17 @@ var root = {
 		});
 		console.log(pets);
 		return new Pet(id, name, tags);
+	},
+
+	deletePet: ({id}) => {
+		for(var i = 0; i < pets.length; i++){
+			if(pets[i].id == id){
+				pets.splice(i, 1);
+			}
+		}
+		// Not good practice
+		console.log(pets);
+		return true;
 	},
 
 	hello: () => {
