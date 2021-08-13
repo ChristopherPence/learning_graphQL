@@ -17,6 +17,11 @@ var schema = buildSchema(`
 		getStore: Store
 	},
 
+	type Mutation{
+		createPet(id: ID, name: String, tags: [String]): Pet,
+		updatePet(id: ID, name: String, tags: [String]): Pet
+	},
+
 	type Pet{
 		id: ID!,
 		name: String,
@@ -42,10 +47,10 @@ var schema = buildSchema(`
 
 
 class Pet{
-	constructor(id){
+	constructor(id, name = "Cheese Ball", tags = ["crazy", "insane"]){
 		this.id = id;
-		this.name = "Cheese Ball";
-		this.tags = ["crazy", "insane"];
+		this.name = name
+		this.tags = tags
 	}
 }
 
@@ -71,10 +76,20 @@ class User{
 	}
 }
 
+var pets = [new Pet(5)]
+
 // Build the resolver for the endpoint
 var root = {
 	getPet: ({id}) => {
-		return new Pet(id);
+		pets.forEach((pet) => {
+			if(pet.id == id){
+				console.log(pet);
+				console.log(typeof(pet));
+				console.log(new Pet(5));
+				console.log(typeof(new Pet(5)));
+				return pet;
+			}
+		});
 	},
 
 	getPetTag: ({tag}) => {
@@ -97,6 +112,13 @@ var root = {
 
 	getStore: () => {
 		return new Store();
+	},
+
+	createPet: ({id, name, tags}) => {
+		pet = new Pet(id, name, tags);
+		pets.push(pet);
+		console.log(pets);
+		return pet;
 	},
 
 	hello: () => {

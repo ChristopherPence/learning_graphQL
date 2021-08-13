@@ -21,8 +21,8 @@ query getOrder($order_id: ID) {
   }
 }
 
-query getUser($name: String){
-  getUser(name: $name){
+query getUser($name: String) {
+  getUser(name: $name) {
     id
     name
     email
@@ -38,6 +38,15 @@ query getStore {
     }
   }
 }
+
+mutation createPet {
+  createPet(id: 7, name: "Barky", tags: ["loud", "cute"]) {
+    id
+    name
+    tags
+  }
+}
+
 
 
 
