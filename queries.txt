@@ -47,6 +47,14 @@ mutation createPet {
   }
 }
 
+mutation updatePet {
+  updatePet(id: 7, name: "Snoozy", tags: ["quiet", "sleepy"]) {
+    id
+    name
+    tags
+  }
+}
+
 
 
 

@@ -121,6 +121,17 @@ var root = {
 		return pet;
 	},
 
+	updatePet: ({id, name, tags}) => {
+		pets.forEach((pet) => {
+			if(pet.id == id){
+				pet.name = name;
+				pet.tags = tags;
+			}
+		});
+		console.log(pets);
+		return new Pet(id, name, tags);
+	},
+
 	hello: () => {
 		return "Hello World";
 	},
