@@ -14,10 +14,12 @@ An abridged version of the Pet Store API was created (https://petstore3.swagger.
 	* Message validation is largely handled by GraphQL because it is strongly-typed. 
 
 2. Add a few happy path integration tests
-
+	
 
 3. Test performance with a simple load test utility
 	* Autocannon was used to loadtest the endpoint.
+
+		> 68k requests in 11.01s, 18.7 MB read
 
 4. Generate documentation
 	* Documentation displayed using the GraphiQL interface. The documentation was created for the pet type and can be seen in the intface or inline code comments.
