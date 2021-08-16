@@ -85,16 +85,14 @@ var pets = [new Pet(5)]
 
 // Build the resolver for the endpoint
 var root = {
+	// Done to avoid promise issues for now
+
 	getPet: ({id}) => {
-		pets.forEach((pet) => {
-			if(pet.id == id){
-				console.log(pet);
-				console.log(typeof(pet));
-				console.log(new Pet(5));
-				console.log(typeof(new Pet(5)));
-				return pet;
+		for(var i = 0; i < pets.length; i++){
+			if(pets[i].id == id){
+				return pets[i];
 			}
-		});
+		}
 	},
 
 	getPetTag: ({tag}) => {
@@ -104,11 +102,12 @@ var root = {
 	},
 
 	getOrder: ({id}) => {
-		new Store().orders.forEach((item) => {
-			if(item.id == id){
-				return item;
+		orders = new Store().orders;
+		for(var i = 0; i < orders.length; i++){
+			if(orders[i].id == id){
+				return orders[i];
 			}
-		});
+		}
 	},
 
 	getUser: ({name}) => {
