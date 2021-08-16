@@ -153,8 +153,6 @@ var root = {
 	},
 };
 
-
-
 app.use('/graphql', graphqlHTTP({
 	schema: schema,
 	rootValue: root,

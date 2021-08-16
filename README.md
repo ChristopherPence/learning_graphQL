@@ -14,7 +14,7 @@ An abridged version of the Pet Store API was created (https://petstore3.swagger.
 	* Message validation is largely handled by GraphQL because it is strongly-typed. 
 
 2. Add a few happy path integration tests
-	
+	* It is not a complete happy path test since there isn't a fully implemented front-end but the provided queries provide a good example of expected functionality.
 
 3. Test performance with a simple load test utility
 	* Autocannon was used to loadtest the endpoint.
